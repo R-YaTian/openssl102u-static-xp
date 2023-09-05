@@ -464,6 +464,10 @@ $defs= <<"EOF";
 EOF
 
 $defs .= $preamble if defined $preamble;
+if (($platform eq "VC-WIN32") || ($platform eq "VC-WIN64A")
+	|| ($platform eq "VC-WIN64I") || ($platform eq "VC-NT")) {
+	$lflags =~ s/subsystem:console/subsystem:console,\"5.01\"/;
+	}
 
 $defs.= <<"EOF";
 INSTALLTOP=$INSTALLTOP
