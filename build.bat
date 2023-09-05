@@ -13,3 +13,4 @@ nmake -f ms\nt.mak install
 
 cd /d C:\
 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -sse OpenSSL-1.0.2u-Static-XP.7z OpenSSL
+pause
