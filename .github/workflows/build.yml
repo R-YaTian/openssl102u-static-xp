@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@master
       name: checkout
 
-    - run: ./build.bat
+    - run: ./build_workflow.bat
       name: build
 
     - uses: actions/upload-artifact@master
