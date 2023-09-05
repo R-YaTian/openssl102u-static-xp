@@ -6,7 +6,7 @@ set PATH=%ProgramFiles(x86)%\Microsoft SDKs\Windows\v7.1A\Bin;%PATH%
 set LIB=%ProgramFiles(x86)%\Microsoft SDKs\Windows\v7.1A\Lib;%LIB%
 
 mkdir C:\OpenSSL
-perl Configure VC-WIN32 no-asm no-shared no-dso --prefix=C:/OpenSSL -D_WIN32_WINNT=0x0501 -D_USING_V110_SDK71_
+perl Configure VC-WIN32 no-asm no-shared no-dso --prefix=C:/OpenSSL -D_WIN32_WINNT=0x0501 -D_USING_V110_SDK71_ -L/subsystem:console,"5.01"
 call ms\do_ms
 nmake -f ms\nt.mak
 nmake -f ms\nt.mak install
