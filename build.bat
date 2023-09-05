@@ -1,12 +1,12 @@
-call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars32.bat"
+call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64_x86 10.0.10240.0 -vcvars_ver=14.16
 
 REM https://devblogs.microsoft.com/cppblog/windows-xp-targeting-with-c-in-visual-studio-2012/
-set INCLUDE=%ProgramFiles(x86)%\Microsoft SDKs\Windows\7.1A\Include;%INCLUDE%
-set PATH=%ProgramFiles(x86)%\Microsoft SDKs\Windows\7.1A\Bin;%PATH%
-set LIB=%ProgramFiles(x86)%\Microsoft SDKs\Windows\7.1A\Lib;%LIB%
+set INCLUDE=%ProgramFiles(x86)%\Microsoft SDKs\Windows\v7.1A\Include;%INCLUDE%
+set PATH=%ProgramFiles(x86)%\Microsoft SDKs\Windows\v7.1A\Bin;%PATH%
+set LIB=%ProgramFiles(x86)%\Microsoft SDKs\Windows\v7.1A\Lib;%LIB%
 
 mkdir C:\OpenSSL
-perl Configure VC-WIN32 no-asm no-shared no-dso --prefix=C:/OpenSSL -arch:IA32 -D_USING_V110_SDK71_
+perl Configure VC-WIN32 no-asm no-shared no-dso --prefix=C:/OpenSSL -D_WIN32_WINNT=0x0501 -D_USING_V110_SDK71_ -L/subsystem:console,"5.01"
 call ms\do_ms
 nmake -f ms\nt.mak
 nmake -f ms\nt.mak install
