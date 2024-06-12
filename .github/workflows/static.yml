@@ -1,4 +1,4 @@
-name: Build
+name: Build static
 
 on:
   push:
@@ -9,13 +9,13 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: windows-2019
 
     steps:
     - uses: actions/checkout@master
       name: checkout
 
-    - run: ./build_workflow.bat
+    - run: ./build_static.bat
       name: build
 
     - uses: actions/upload-artifact@master

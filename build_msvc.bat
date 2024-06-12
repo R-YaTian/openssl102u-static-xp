@@ -1,4 +1,4 @@
-call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64_x86 -vcvars_ver=14.16
+call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64_x86 -vcvars_ver=14.16
 
 REM https://devblogs.microsoft.com/cppblog/windows-xp-targeting-with-c-in-visual-studio-2012/
 set INCLUDE=%ProgramFiles(x86)%\Microsoft SDKs\Windows\v7.1A\Include;%INCLUDE%
@@ -13,3 +13,4 @@ nmake -f ms\nt.mak install
 
 cd /d C:\
 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on -sse OpenSSL-1.0.2u-Static-XP.7z OpenSSL
+pause

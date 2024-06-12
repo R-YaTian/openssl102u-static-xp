@@ -940,7 +940,7 @@ int capi_rsa_priv_dec(int flen, const unsigned char *from,
         tmpbuf[flen - i - 1] = from[i];
 
     /* Finally decrypt it */
-    if (!CryptDecrypt(capi_key->key, 0, TRUE, flags, tmpbuf, &flen)) {
+    if (!CryptDecrypt(capi_key->key, 0, TRUE, flags, tmpbuf, (DWORD *) &flen)) {
         CAPIerr(CAPI_F_CAPI_RSA_PRIV_DEC, CAPI_R_DECRYPT_ERROR);
         capi_addlasterror();
         OPENSSL_cleanse(tmpbuf, flen);
@@ -1339,7 +1339,7 @@ void capi_dump_cert(CAPI_CTX * ctx, BIO *out, PCCERT_CONTEXT cert)
     }
 
     p = cert->pbCertEncoded;
-    x = d2i_X509(NULL, &p, cert->cbCertEncoded);
+    x = d2i_X509(NULL, (const unsigned char **) &p, cert->cbCertEncoded);
     if (!x)
         BIO_printf(out, "  <Can't parse certificate>\n");
     if (flags & CAPI_DMP_SUMMARY) {
@@ -1727,7 +1727,7 @@ static int capi_load_ssl_client_cert(ENGINE *e, SSL *ssl,
         if (!cert)
             break;
         p = cert->pbCertEncoded;
-        x = d2i_X509(NULL, &p, cert->cbCertEncoded);
+        x = d2i_X509(NULL, (const unsigned char **) &p, cert->cbCertEncoded);
         if (!x) {
             CAPI_trace(ctx, "Can't Parse Certificate %d\n", i);
             continue;
